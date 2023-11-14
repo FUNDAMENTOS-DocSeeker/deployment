@@ -1,0 +1,5 @@
+CREATE DATABASE patients;
+CREATE DATABASE medical_history;
+CREATE DATABASE news;
+CREATE DATABASE prescriptions;
+CREATE DATABASE reviews;

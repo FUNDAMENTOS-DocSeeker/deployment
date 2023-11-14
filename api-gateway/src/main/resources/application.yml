@@ -1,0 +1,66 @@
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://discovery-server:8761/eureka
+
+server:
+  port: 8080
+
+spring:
+  application:
+    name: api-gateway
+  cloud:
+    gateway:
+      default-filters:
+        - DedupeResponseHeader=Access-Control-Allow-Credentials Access-Control-Allow-Origin
+      globalcors:
+          corsConfigurations:
+            '[/**]':
+              allowedOrigins: "*"
+              allowedMethods: "*"
+              allowedHeaders: "*"
+      routes:
+        - id: discovery-server
+          uri: http://discovery-server:8761
+          predicates:
+            - Path=/eureka/web
+          filters:
+            - SetPath=/
+        - id: discovery-server-static
+          uri: http://discovery-server:8761
+          predicates:
+            - Path=/eureka/**
+        - id: patient-service
+          uri: lb://patient-service
+          predicates:
+            - Path=/api/v1/patients/**
+        - id: doctor-service
+          uri: lb://doctor-service
+          predicates:
+            - Path=/api/v1/doctors/**
+        - id: appointment-service
+          uri: lb://appointment-service
+          predicates:
+            - Path=/api/v1/appointments/**
+        - id: review-service
+          uri: lb://review-service
+          predicates:
+            - Path=/api/v1/reviews/**
+        - id: new-service
+          uri: lb://new-service
+          predicates:
+            - Path=/api/v1/news/**
+        - id: prescription-service
+          uri: lb://prescription-service
+          predicates:
+            - Path=/api/v1/prescriptions/**
+        - id: medical-history-service
+          uri: lb://medical-history-service
+          predicates:
+            - Path=/api/v1/medical-histories/**
+
+logging:
+  level:
+    root: INFO
+    org.springframework.cloud.gateway: TRACE
+    org.springframework.cloud.gateway.route.RouteDefinitionRouteLocator: DEBUG

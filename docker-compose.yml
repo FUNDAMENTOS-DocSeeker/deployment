@@ -1,0 +1,130 @@
+version: '3.9'
+
+services:
+  docseeker-database:
+    container_name: docseeker-database
+    image: postgres:latest
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_DB: doctors
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: cats
+    networks:
+      - docseeker-network
+    volumes:
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
+
+  discovery-server:
+    container_name: discovery-server
+    image: discovery-server:1.0.0
+    build: ./discovery-server
+    ports:
+      - 8761:8761
+    networks:
+      - docseeker-network
+
+  api-gateway:
+    container_name: api-gateway
+    image: api-gateway:1.0.0
+    build: ./api-gateway
+    ports:
+      - 8080:8080
+    networks:
+      - docseeker-network
+    depends_on:
+      - doctor-service
+      - discovery-server
+
+  doctor-service:
+    container_name: doctor-service
+    image: doctor-service:1.0.0
+    build: ./doctor-service
+    ports:
+      - 8082:8082
+    environment:
+      - DATABASE_URL=jdbc:postgresql://docseeker-database:5432/doctors
+      - DATABASE_USERNAME=postgres
+      - DATABASE_PASSWORD=cats
+    depends_on:
+      - docseeker-database
+    networks:
+      - docseeker-network
+
+  patient-service:
+    container_name: patient-service
+    image: patient-service:1.0.0
+    build: ./patient-service
+    ports:
+      - 8081:8081
+    environment:
+      - DATABASE_URL=jdbc:postgresql://docseeker-database:5432/patients
+      - DATABASE_USERNAME=postgres
+      - DATABASE_PASSWORD=cats
+    depends_on:
+      - docseeker-database
+    networks:
+      - docseeker-network
+
+  medical-history-service:
+    container_name: medical-history-service
+    image: medical-history-service:1.0.0
+    build: ./medical-history-service
+    ports:
+      - 8087:8087
+    environment:
+      - DATABASE_URL=jdbc:postgresql://docseeker-database:5432/medical_history
+      - DATABASE_USERNAME=postgres
+      - DATABASE_PASSWORD=cats
+    depends_on:
+      - docseeker-database
+    networks:
+      - docseeker-network
+
+  news-service:
+    container_name: news-service
+    image: news-service:1.0.0
+    build: ./news-service
+    ports:
+      - 8085:8085
+    environment:
+      - DATABASE_URL=jdbc:postgresql://docseeker-database:5432/news
+      - DATABASE_USERNAME=postgres
+      - DATABASE_PASSWORD=cats
+    depends_on:
+      - docseeker-database
+    networks:
+      - docseeker-network
+
+  prescription-service:
+    container_name: prescription-service
+    image: prescription-service:1.0.0
+    build: ./prescription-service
+    ports:
+      - 8086:8086
+    environment:
+      - DATABASE_URL=jdbc:postgresql://docseeker-database:5432/prescriptions
+      - DATABASE_USERNAME=postgres
+      - DATABASE_PASSWORD=cats
+    depends_on:
+      - docseeker-database
+    networks:
+      - docseeker-network
+
+  review-service:
+    container_name: review-service
+    image: review-service:1.0.0
+    build: ./review-service
+    ports:
+      - 8084:8084
+    environment:
+      - DATABASE_URL=jdbc:postgresql://docseeker-database:5432/reviews
+      - DATABASE_USERNAME=postgres
+      - DATABASE_PASSWORD=cats
+    depends_on:
+      - docseeker-database
+    networks:
+      - docseeker-network
+
+networks:
+  docseeker-network:
