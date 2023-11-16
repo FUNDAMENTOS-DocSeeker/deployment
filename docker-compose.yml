@@ -14,7 +14,6 @@ services:
       - docseeker-network
     volumes:
       - ./init.sql:/docker-entrypoint-initdb.d/init.sql
-      - ./data.sql:/docker-entrypoint-initdb.d/data.sql
 
   discovery-server:
     container_name: discovery-server
