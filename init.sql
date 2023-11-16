@@ -3,3 +3,4 @@ CREATE DATABASE medical_history;
 CREATE DATABASE news;
 CREATE DATABASE prescriptions;
 CREATE DATABASE reviews;
+CREATE DATABASE appointments;

@@ -126,5 +126,20 @@ services:
     networks:
       - docseeker-network
 
+  appointment-service:
+    container_name: appointment-service
+    image: appointment-service:1.0.0
+    build: ./appointment-service
+    ports:
+      - 8083:8083
+    environment:
+      - DATABASE_URL=jdbc:postgresql://docseeker-database:5432/appointments
+      - DATABASE_USERNAME=postgres
+      - DATABASE_PASSWORD=cats
+    depends_on:
+      - docseeker-database
+    networks:
+      - docseeker-network
+
 networks:
   docseeker-network:
