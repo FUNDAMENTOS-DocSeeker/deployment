@@ -14,6 +14,7 @@ services:
       - docseeker-network
     volumes:
       - ./init.sql:/docker-entrypoint-initdb.d/init.sql
+      - docseeker-data:/var/lib/postgresql/data
 
   discovery-server:
     container_name: discovery-server
@@ -143,3 +144,6 @@ services:
 
 networks:
   docseeker-network:
+
+volumes:
+  docseeker-data:
