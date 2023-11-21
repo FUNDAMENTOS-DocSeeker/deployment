@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
 
 @RestController
+@CrossOrigin()
 @RequestMapping("api/v1/patients")
 @AllArgsConstructor
 public class PatientController {
