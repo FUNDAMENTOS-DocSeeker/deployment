@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="47486574-fe67-4576-bd07-04a709ba87bf" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/patient-service/src/main/java/com/docseeker/patient/PatientApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/patient-service/src/main/java/com/docseeker/patient/PatientApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/patient-service/src/main/java/com/docseeker/patient/api/PatientController.java" beforeDir="false" afterPath="$PROJECT_DIR$/patient-service/src/main/java/com/docseeker/patient/api/PatientController.java" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ProjectId" id="2YShMKbjyvBBLFu148OZg6qS6O6" />
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.ShowReadmeOnStart": "true"
+  }
+}]]></component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="47486574-fe67-4576-bd07-04a709ba87bf" name="Changes" comment="" />
+      <created>1700524842936</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1700524842936</updated>
+    </task>
+    <servers />
+  </component>
+</project>
