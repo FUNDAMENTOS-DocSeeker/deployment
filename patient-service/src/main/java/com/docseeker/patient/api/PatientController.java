@@ -19,6 +19,7 @@ import org.springframework.web.server.ResponseStatusException;
 @RestController
 @RequestMapping("api/v1/patients")
 @AllArgsConstructor
+@CrossOrigin()
 public class PatientController {
   private final PatientService patientService;
 
